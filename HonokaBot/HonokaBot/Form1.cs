@@ -39,16 +39,5 @@ namespace HonokaBot
                 richTextBox_serverResponse.Text += text + "\n";
             }
         }
-
-        //delegate to write into the server response richtextbox
-        public void delegate_write(string text) //do wywalenia
-        {
-            if (richTextBox_serverResponse.InvokeRequired == true)
-                richTextBox_serverResponse.Invoke((MethodInvoker)delegate { consolewrite(text); });
-
-            else
-                consolewrite(text);
-        }
-
     }
 }
