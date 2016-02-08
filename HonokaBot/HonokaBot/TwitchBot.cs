@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.IO;
 using System.Threading;
-
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
 namespace HonokaBot
 {
@@ -85,7 +75,7 @@ namespace HonokaBot
             string command = "";
             while ((command = reader.ReadLine()) != null)
             {
-                Program.form1.delegate_write(command);
+                Program.form1.consolewrite(command);
             }
         }
     }
