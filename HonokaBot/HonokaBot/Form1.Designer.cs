@@ -92,6 +92,7 @@
             this.Controls.Add(this.label_channelName);
             this.Name = "Form1";
             this.Text = "HonokaBot";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

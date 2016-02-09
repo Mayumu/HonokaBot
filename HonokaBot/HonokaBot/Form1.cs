@@ -12,7 +12,7 @@ namespace HonokaBot
 
         private void button_connection_Click(object sender, EventArgs e)
         {
-            if (button_connection.Text == "Connect") //suabe
+            if (button_connection.Text == "Connect")
             {
                 button_connection.Text = "Disconnect";
                 textBox_inputChannelName.Enabled = false;
@@ -38,6 +38,12 @@ namespace HonokaBot
             {
                 richTextBox_serverResponse.Text += text + "\n";
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (button_connection.Text != "Connect")
+                Program.twitchBot.disconnect();
         }
     }
 }
