@@ -114,6 +114,7 @@ namespace HonokaBot
                 {
                     addCommandToDB(meth, res);
                     list_of_commands.Add(new chat_command(meth, res));
+                    say("Command " + meth + " added.");
                 }
                 else say("Command already exists~!");
             }
@@ -157,6 +158,123 @@ namespace HonokaBot
 
             result = newStr.ToString(); ;
             return method;
+        }
+
+        //delete a command
+        private void delCommand(string input)
+        {
+            if (who_says_that(input) == "mayumu")
+            {
+                string delwhat = delCommandParser(input);
+                if (delwhat != "")
+                {
+                    delComFromDB(delwhat);
+                    foreach (chat_command x in list_of_commands)
+                    {
+                        if (x.call == delwhat)
+                        {
+                            list_of_commands.Remove(x);
+                            break;
+                        }
+                    }
+                    say("Command " + delwhat + " removed.");
+                }
+            }
+        }
+
+        //parsing method for the !delcom input
+        private string delCommandParser(string input)
+        {
+            int index = input.IndexOf(":!delcom ");
+            if (index == -1)
+            {
+                return "";
+            }
+            StringBuilder newStr = new StringBuilder();
+            newStr.Append(input);
+            newStr.Remove(0, index + 9); // :!addcom length + space
+
+            if (newStr.Length < 1) // znak spacja znak
+            {
+                return "";
+            }
+            string method = newStr.ToString();
+            return method;
+        }
+
+        //delete the command from the db
+        private void delComFromDB(string call)
+        {
+            MySqlConnection connection = new MySqlConnection();
+            connection.ConnectionString = ConnectionInfo.mysqlLogin;
+            MySqlCommand command = new MySqlCommand(@"DELETE FROM `BotCommands` WHERE `command` = '" + call + "';", connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            if (connection != null)
+            {
+                connection.Close();
+            }
+        }
+
+        //edit a command
+        private void editCommand(string input)
+        {
+            if (who_says_that(input) == "mayumu")
+            {
+                string res;
+                string meth = editCommandParser(input, out res);
+                if (res != "" && meth != "")
+                {
+                    editCommandInDB(meth, res);
+                    for (int i = 0; i < list_of_commands.Count; i++)
+                    {
+                        if (list_of_commands[i].call == meth)
+                        {
+                            list_of_commands[i] = new chat_command(meth, res);
+                        }
+                    }
+                    say("Edited command " + meth + " to say: \"" + res + "\"");
+                }
+            }
+        }
+
+        //parse the input with an !editcom
+        string editCommandParser(string input, out string result)
+        {
+            int index = input.IndexOf(":!editcom ");
+            if (index == -1)
+            {
+                result = "";
+                return "";
+            }
+            StringBuilder newStr = new StringBuilder();
+            newStr.Append(input);
+            newStr.Remove(0, index + 10); // :!editcom length + space
+            index = newStr.ToString().IndexOf(" ");
+            if (index == -1 || newStr.Length < 3) // znak spacja znak
+            {
+                result = "";
+                return "";
+            }
+            string method = newStr.ToString().Substring(0, index);
+            newStr.Remove(0, index + 1);
+
+            result = newStr.ToString(); ;
+            return method;
+        }
+
+        //edit the command in DB
+        private void editCommandInDB(string call, string result)
+        {
+            MySqlConnection connection = new MySqlConnection();
+            connection.ConnectionString = ConnectionInfo.mysqlLogin;
+            MySqlCommand command = new MySqlCommand(@"UPDATE `BotCommands` " + "SET reply='" + result + @"' WHERE `command` = '" + call + "';", connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            if (connection != null)
+            {
+                connection.Close();
+            }
         }
 
         //download commands from the database
@@ -204,9 +322,13 @@ namespace HonokaBot
                 {
                     addCommand(command);
                 }
-                if (command.Contains("PRIVMSG " + channel + " :!delcom")) //!addcom detected
+                if (command.Contains("PRIVMSG " + channel + " :!delcom")) //!delcom detected
                 {
-                    addCommand(command);
+                    delCommand(command);
+                }
+                if (command.Contains("PRIVMSG " + channel + " :!editcom")) //!editcom detected
+                {
+                    editCommand(command);
                 }
                 else
                 {
