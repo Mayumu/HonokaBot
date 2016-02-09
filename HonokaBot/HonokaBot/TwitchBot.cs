@@ -318,17 +318,23 @@ namespace HonokaBot
             while ((command = reader.ReadLine()) != null)
             {
                 Program.form1.consolewrite(command);
+                char let;
+                string num;
                 if (command.Contains("PRIVMSG " + channel + " :!addcom")) //!addcom detected
                 {
                     addCommand(command);
                 }
-                if (command.Contains("PRIVMSG " + channel + " :!delcom")) //!delcom detected
+                else if (command.Contains("PRIVMSG " + channel + " :!delcom")) //!delcom detected
                 {
                     delCommand(command);
                 }
-                if (command.Contains("PRIVMSG " + channel + " :!editcom")) //!editcom detected
+                else if (command.Contains("PRIVMSG " + channel + " :!editcom")) //!editcom detected
                 {
                     editCommand(command);
+                }
+                else if(Requester.is_map_link(command, out let, out num))
+                {
+
                 }
                 else
                 {
