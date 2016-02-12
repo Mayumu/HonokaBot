@@ -18,12 +18,15 @@ namespace HonokaBot
                 textBox_inputChannelName.Enabled = false;
                 Program.twitchBot = new TwitchBot(textBox_inputChannelName.Text);
                 Program.twitchBot.connect();
+                Program.osuIRC = new OsuIRC();
+                Program.osuIRC.connect();
             }
             else
             {
                 button_connection.Text = "Connect";
                 textBox_inputChannelName.Enabled = true;
                 Program.twitchBot.disconnect();
+                Program.osuIRC.disconnect();
             }
         }
 
@@ -43,7 +46,17 @@ namespace HonokaBot
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (button_connection.Text != "Connect")
+            {
                 Program.twitchBot.disconnect();
+                Program.osuIRC.disconnect();
+            }
+        }
+
+        //say something in chat
+        private void button_twitchSay_Click(object sender, EventArgs e)
+        {
+            Program.twitchBot.say(textBox_TwitchSay.Text);
+            textBox_TwitchSay.Text = "";
         }
     }
 }

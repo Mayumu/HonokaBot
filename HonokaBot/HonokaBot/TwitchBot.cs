@@ -52,7 +52,7 @@ namespace HonokaBot
         }
 
         //say something in chatroom you're in
-        private void say(string saywut)
+        public void say(string saywut)
         {
             writer.WriteLine("PRIVMSG {0} :{1}", channel, saywut);
             writer.Flush();
@@ -334,7 +334,7 @@ namespace HonokaBot
                 }
                 else if(Requester.is_map_link(command, out let, out num))
                 {
-
+                    Requester.request(let, num);
                 }
                 else
                 {

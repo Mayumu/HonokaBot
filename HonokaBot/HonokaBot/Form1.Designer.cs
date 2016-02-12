@@ -32,7 +32,9 @@
             this.textBox_inputChannelName = new System.Windows.Forms.TextBox();
             this.button_connection = new System.Windows.Forms.Button();
             this.richTextBox_serverResponse = new System.Windows.Forms.RichTextBox();
-            this.label_serverResponse = new System.Windows.Forms.Label();
+            this.labelTwitchIRCOutput = new System.Windows.Forms.Label();
+            this.textBox_TwitchSay = new System.Windows.Forms.TextBox();
+            this.button_twitchSay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_channelName
@@ -71,21 +73,40 @@
             this.richTextBox_serverResponse.TabIndex = 3;
             this.richTextBox_serverResponse.Text = "";
             // 
-            // label_serverResponse
+            // labelTwitchIRCOutput
             // 
-            this.label_serverResponse.AutoSize = true;
-            this.label_serverResponse.Location = new System.Drawing.Point(6, 37);
-            this.label_serverResponse.Name = "label_serverResponse";
-            this.label_serverResponse.Size = new System.Drawing.Size(89, 13);
-            this.label_serverResponse.TabIndex = 4;
-            this.label_serverResponse.Text = "Server responses";
+            this.labelTwitchIRCOutput.AutoSize = true;
+            this.labelTwitchIRCOutput.Location = new System.Drawing.Point(6, 37);
+            this.labelTwitchIRCOutput.Name = "labelTwitchIRCOutput";
+            this.labelTwitchIRCOutput.Size = new System.Drawing.Size(102, 13);
+            this.labelTwitchIRCOutput.TabIndex = 4;
+            this.labelTwitchIRCOutput.Text = "Twitch\'s IRC Output";
+            // 
+            // textBox_TwitchSay
+            // 
+            this.textBox_TwitchSay.Location = new System.Drawing.Point(12, 264);
+            this.textBox_TwitchSay.Name = "textBox_TwitchSay";
+            this.textBox_TwitchSay.Size = new System.Drawing.Size(440, 20);
+            this.textBox_TwitchSay.TabIndex = 7;
+            // 
+            // button_twitchSay
+            // 
+            this.button_twitchSay.Location = new System.Drawing.Point(455, 262);
+            this.button_twitchSay.Name = "button_twitchSay";
+            this.button_twitchSay.Size = new System.Drawing.Size(70, 23);
+            this.button_twitchSay.TabIndex = 8;
+            this.button_twitchSay.Text = "Say";
+            this.button_twitchSay.UseVisualStyleBackColor = true;
+            this.button_twitchSay.Click += new System.EventHandler(this.button_twitchSay_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 356);
-            this.Controls.Add(this.label_serverResponse);
+            this.ClientSize = new System.Drawing.Size(533, 296);
+            this.Controls.Add(this.button_twitchSay);
+            this.Controls.Add(this.textBox_TwitchSay);
+            this.Controls.Add(this.labelTwitchIRCOutput);
             this.Controls.Add(this.richTextBox_serverResponse);
             this.Controls.Add(this.button_connection);
             this.Controls.Add(this.textBox_inputChannelName);
@@ -104,7 +125,9 @@
         private System.Windows.Forms.TextBox textBox_inputChannelName;
         private System.Windows.Forms.Button button_connection;
         private System.Windows.Forms.RichTextBox richTextBox_serverResponse;
-        private System.Windows.Forms.Label label_serverResponse;
+        private System.Windows.Forms.Label labelTwitchIRCOutput;
+        private System.Windows.Forms.TextBox textBox_TwitchSay;
+        private System.Windows.Forms.Button button_twitchSay;
     }
 }
 

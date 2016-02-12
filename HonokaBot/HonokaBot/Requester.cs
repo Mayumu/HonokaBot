@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace HonokaBot
 {
@@ -65,13 +66,27 @@ namespace HonokaBot
             else return false;
         }
 
-        public static Beatmap[] getMapInfo(char letter, string mapnum)
+        //get info from osu API about the beatmap
+        private static Beatmap[] getMapInfo(char letter, string mapnum)
         {
             string apilink = "https://osu.ppy.sh/api/get_beatmaps?k=" + ConnectionInfo.osuAPIKey + "&" + letter + "=" + mapnum;
             string apiresult = "[]";
             apiresult = new System.Net.WebClient().DownloadString(apilink);
             Beatmap[] deserializedData = JsonConvert.DeserializeObject<Beatmap[]>(apiresult);
             return deserializedData;
+        }
+
+        //call the getMapInfo method to get the info and send it on osu!IRC
+        public static void request(char letter, string mapnum)
+        {
+            Beatmap[] mapInfo = getMapInfo(letter, mapnum);
+            string artist = mapInfo[0].artist;
+            string title = mapInfo[0].title;
+            int bpm = mapInfo[0].bpm;
+            double stars = Math.Round(mapInfo[0].difficultyrating, 2);
+            double ar = mapInfo[0].diff_approach;
+            string version = mapInfo[0].version;
+            Program.osuIRC.PM_Myself("[https://osu.ppy.sh/" + letter + "/" + mapnum + " " + artist + " - " + title + "] (" + version + ") | " + stars + " stars | AR" + ar + " | " + bpm + "BPM");
         }
     }
 }
