@@ -49,6 +49,7 @@ namespace HonokaBot
             {
                 Program.twitchBot.disconnect();
                 Program.osuIRC.disconnect();
+                Program.ping.Stop();
             }
         }
 

@@ -45,7 +45,7 @@ namespace HonokaBot
         }
 
         //tell a command to the server you're connected to
-        private void tell_server(string tellwut)
+        public void tell_server(string tellwut)
         {
             writer.WriteLine(tellwut);
             writer.Flush();
@@ -71,12 +71,13 @@ namespace HonokaBot
             tell_server("PASS " + pass);
             tell_server("NICK " + name);
             tell_server("JOIN " + channel);
-            say("Connected!");
             //grab the commands from the mysql server
             download_commands();
             //start the thread maintaining the connection
             listening = new Thread(maintain_connection);
             listening.Start();
+            //start the pinger
+            Program.ping.Start();
         }
 
         //disconnect from the server

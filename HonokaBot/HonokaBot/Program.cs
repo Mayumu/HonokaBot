@@ -13,6 +13,7 @@ namespace HonokaBot
         //declaration of our bots objects
         public static TwitchBot twitchBot;
         public static OsuIRC osuIRC;
+        public static PingSender ping = new PingSender();
 
         //initial form - need to declare it here to make it accessible from all classes
         public static Form1 form1;
