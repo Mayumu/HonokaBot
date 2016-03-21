@@ -87,6 +87,8 @@ namespace HonokaBot
             double ar = mapInfo[0].diff_approach;
             string version = mapInfo[0].version;
             Program.osuIRC.PM_Myself("[https://osu.ppy.sh/" + letter + "/" + mapnum + " " + artist + " - " + title + "] (" + version + ") | " + stars + " stars | AR" + ar + " | " + bpm + "BPM");
+            if (Program.form1.checkBox_sendRequestToChatToo_check)
+                Program.twitchBot.say("Requested https://osu.ppy.sh/" + letter + "/" + mapnum + " | " + artist + " - " + title + " [" + version + "]");
         }
     }
 }

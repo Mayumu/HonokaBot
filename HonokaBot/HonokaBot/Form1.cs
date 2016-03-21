@@ -27,6 +27,7 @@ namespace HonokaBot
                 textBox_inputChannelName.Enabled = true;
                 Program.twitchBot.disconnect();
                 Program.osuIRC.disconnect();
+                Program.ping.Stop();
             }
         }
 
@@ -58,6 +59,15 @@ namespace HonokaBot
         {
             Program.twitchBot.say(textBox_TwitchSay.Text);
             textBox_TwitchSay.Text = "";
+        }
+
+        //accessor to the "Send the request to Twitch chat too" checkbox
+        public bool checkBox_sendRequestToChatToo_check
+        {
+            get
+            {
+                return checkBox_sendRequestToChatToo.Checked;
+            }
         }
     }
 }

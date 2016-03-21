@@ -35,6 +35,7 @@
             this.labelTwitchIRCOutput = new System.Windows.Forms.Label();
             this.textBox_TwitchSay = new System.Windows.Forms.TextBox();
             this.button_twitchSay = new System.Windows.Forms.Button();
+            this.checkBox_sendRequestToChatToo = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label_channelName
@@ -84,9 +85,9 @@
             // 
             // textBox_TwitchSay
             // 
-            this.textBox_TwitchSay.Location = new System.Drawing.Point(12, 264);
+            this.textBox_TwitchSay.Location = new System.Drawing.Point(9, 264);
             this.textBox_TwitchSay.Name = "textBox_TwitchSay";
-            this.textBox_TwitchSay.Size = new System.Drawing.Size(440, 20);
+            this.textBox_TwitchSay.Size = new System.Drawing.Size(443, 20);
             this.textBox_TwitchSay.TabIndex = 7;
             // 
             // button_twitchSay
@@ -99,11 +100,22 @@
             this.button_twitchSay.UseVisualStyleBackColor = true;
             this.button_twitchSay.Click += new System.EventHandler(this.button_twitchSay_Click);
             // 
+            // checkBox_sendRequestToChatToo
+            // 
+            this.checkBox_sendRequestToChatToo.AutoSize = true;
+            this.checkBox_sendRequestToChatToo.Location = new System.Drawing.Point(9, 292);
+            this.checkBox_sendRequestToChatToo.Name = "checkBox_sendRequestToChatToo";
+            this.checkBox_sendRequestToChatToo.Size = new System.Drawing.Size(196, 17);
+            this.checkBox_sendRequestToChatToo.TabIndex = 9;
+            this.checkBox_sendRequestToChatToo.Text = "Send the request to Twitch chat too";
+            this.checkBox_sendRequestToChatToo.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 296);
+            this.ClientSize = new System.Drawing.Size(533, 321);
+            this.Controls.Add(this.checkBox_sendRequestToChatToo);
             this.Controls.Add(this.button_twitchSay);
             this.Controls.Add(this.textBox_TwitchSay);
             this.Controls.Add(this.labelTwitchIRCOutput);
@@ -128,6 +140,7 @@
         private System.Windows.Forms.Label labelTwitchIRCOutput;
         private System.Windows.Forms.TextBox textBox_TwitchSay;
         private System.Windows.Forms.Button button_twitchSay;
+        private System.Windows.Forms.CheckBox checkBox_sendRequestToChatToo;
     }
 }
 
