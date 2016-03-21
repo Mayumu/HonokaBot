@@ -33,8 +33,7 @@ namespace HonokaBot
 
         public void PM_Myself(string pmwut)
         {
-            //writer.WriteLine("PRIVMSG " + name + " :" + pmwut);
-            writer.WriteLine("PRIVMSG " + "daxyn" + " :" + pmwut);
+            writer.WriteLine("PRIVMSG " + name + " :" + pmwut);
             writer.Flush();
         }
 
